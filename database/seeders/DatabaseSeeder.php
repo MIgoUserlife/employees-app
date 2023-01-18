@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Employee;
+use App\Models\Position;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -13,7 +15,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
          User::factory()->create([
              'name' => 'Admin',
@@ -21,8 +23,8 @@ class DatabaseSeeder extends Seeder
              'password' => bcrypt('qwertyui'),
          ]);
 
-        // \App\Models\User::factory(10)->create();
+        Position::factory(10)->create();
 
-
+        Employee::factory(50)->create();
     }
 }
