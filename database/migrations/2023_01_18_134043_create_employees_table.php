@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('date_of_employment');
             $table->string('phone_number');
             $table->string('email')->unique();
-            $table->unsignedFloat('salary')->default(0);
+            $table->unsignedInteger('salary')->default(0);
             $table->string('photo')->nullable();
 
             $table->unsignedBigInteger('admin_created_id')->default(1);

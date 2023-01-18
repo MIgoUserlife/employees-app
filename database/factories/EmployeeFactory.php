@@ -18,12 +18,12 @@ class EmployeeFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake('uk_UA')->name(),
+            'name' => fake('uk_UA')->unique()->name(),
             'position_id' => Position::query()->inRandomOrder()->value('id'),
             'date_of_employment' => fake()->date('d.m.y'),
-            'phone_number' => fake('uk_UA')->e164PhoneNumber(),
-            'email' => fake('uk_UA')->email(),
-            'salary' => fake()->randomFloat(2, 0, 500000),
+            'phone_number' => fake('uk_UA')->unique()->e164PhoneNumber(),
+            'email' => fake('uk_UA')->unique()->email(),
+            'salary' => fake()->numberBetween(0, 500000),
         ];
     }
 }
