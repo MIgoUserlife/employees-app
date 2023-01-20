@@ -12,9 +12,6 @@ class Position extends Model
 
     protected $fillable = [
         'name',
-    ];
-
-    protected $hidden = [
         'admin_created_id',
         'admin_updated_id',
     ];
