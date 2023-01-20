@@ -18,11 +18,8 @@ class Employee extends Model
         'email',
         'salary',
         'photo',
-    ];
-
-    protected $hidden = [
-      'admin_created_id',
-      'admin_updated_id',
+        'admin_created_id',
+        'admin_updated_id',
     ];
 
     public function position(): BelongsTo
