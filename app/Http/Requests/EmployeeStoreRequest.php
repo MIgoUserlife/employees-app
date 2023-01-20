@@ -27,7 +27,7 @@ class EmployeeStoreRequest extends FormRequest
             'phone_number' => ['required', 'regex:/^\+380[0-9]{9}$/'],
             'email' => ['email:rfc,dns', 'required', 'unique:employees'],
             'salary' => ['integer', 'required', 'min:0', 'max:500000'],
-            'photo' => ['image', 'nullable', 'mimes:png,jpg', 'size:5120', 'dimensions:min_width=300,min_height=300'],
+            'photo' => ['image', 'nullable', 'mimes:png,jpg', 'max:5120', 'dimensions:min_width=300,min_height=300'],
         ];
 
     }

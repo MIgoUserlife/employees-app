@@ -14,6 +14,7 @@
     <form
         action="{{ route('employees.update', $employee->id) }}"
         method="post"
+        enctype="multipart/form-data"
     >
         @csrf
         @method('patch')
@@ -22,9 +23,32 @@
             name="photo"
             label="Photo"
             legend="Upload photo"
-            fgroup-class="d-inline-block"
+            igroup-class="d-none"
             disable-feedback
-        />
+            @class([
+                'is-invalid' => $errors->first('photo')
+            ])
+        >
+            <x-slot name="bottomSlot">
+                @error('photo') <div class="mb-3">{{ $message }}</div> @enderror
+                @if($employee->photo)
+                    <div>
+                        <img
+                            src="{{ $employee->thumb }}"
+                            alt="{{ $employee->name }}"
+                            width="150"
+                            height="150"
+                        />
+                    </div>
+                @endif
+            </x-slot>
+        </x-adminlte-input-file>
+        <div>
+            <a href="#" id="btn_upload_photo" class="btn btn-flat btn-primary w-25">Upload photo</a>
+        </div>
+        <div class="text-sm text-gray mt-2 mb-3">
+            File format jpg,png up to 5 MB, the minimum size of 300x300px
+        </div>
 
         <x-adminlte-input
             name="name"
@@ -163,6 +187,16 @@
 @section('plugins.BsCustomFileInput', true)
 
 @section('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnUploadPhoto = document.querySelector('#btn_upload_photo'),
+                  inputUploadPhoto = document.querySelector('input[name="photo"]');
+            btnUploadPhoto.addEventListener('click', (e) => {
+                e.preventDefault();
+                inputUploadPhoto.click();
+            });
+        });
+    </script>
     <x-scripts.input-fields-mask></x-scripts.input-fields-mask>
     <x-scripts.input-fields-count></x-scripts.input-fields-count>
 @stop

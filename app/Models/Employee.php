@@ -26,4 +26,12 @@ class Employee extends Model
     {
         return $this->belongsTo(Position::class, 'position_id', 'id');
     }
+
+    public function getThumbAttribute()
+    {
+        $photoName = explode('.', $this->photo);
+
+        return asset('images/employees/'. $this->id . '/300x300/' . $photoName[0] . '.jpg');
+
+    }
 }

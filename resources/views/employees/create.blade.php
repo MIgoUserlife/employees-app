@@ -14,6 +14,7 @@
     <form
         action="{{ route('employees.store') }}"
         method="post"
+        enctype="multipart/form-data"
     >
         @csrf
 
@@ -23,7 +24,14 @@
             legend="Upload photo"
             fgroup-class="d-inline-block"
             disable-feedback
-        />
+            @class([
+                'is-invalid' => $errors->first('photo')
+            ])
+        >
+            <x-slot name="bottomSlot">
+                @error('photo') <span>{{ $message }}</span> @enderror
+            </x-slot>
+        </x-adminlte-input-file>
 
         <x-adminlte-input
             name="name"
